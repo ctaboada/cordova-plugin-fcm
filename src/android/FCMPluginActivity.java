@@ -42,8 +42,8 @@ public class FCMPluginActivity extends Activity {
 		FCMPlugin.sendPushPayload(data);
 
         finish();
-
         forceMainActivityReload();
+        clearNotifications();
     }
 
     private void forceMainActivityReload() {
@@ -72,4 +72,9 @@ public class FCMPluginActivity extends Activity {
 		Log.d(TAG, "==> FCMPluginActivity onStop");
 	}
 
+    protected void clearNotifications() {
+        Log.d(TAG, "==> FCMPluginActivity clearing notifications");
+        final NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
+    }
 }
